@@ -14,11 +14,13 @@
   border-bottom: 3px solid rgb(147, 169, 205);
 }
 
-.image-container {
+.image {
   height: 150px;
   width: 150px;
   border-radius: 75px;
   overflow: hidden;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .name {

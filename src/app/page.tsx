@@ -68,7 +68,7 @@ const Header = ({ name, aboutMe }: HeaderProps) => {
         <Image
           src={profileImage}
           alt="A picture of me!"
-          className="image-container"
+          className="image"
           priority
         />
       </div>
