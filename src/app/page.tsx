@@ -1,95 +1,104 @@
+"use client";
 import Image from "next/image";
-import styles from "./page.module.css";
+import profileImage from "../../public/profile.png";
 
-export default function Home() {
+const HEADERNAME = "Thor Ib Wessman";
+const HEADERDESCRIPTION = "Programmer in development";
+
+const DATA = [
+  {
+    id: 0,
+    title: "Sky Lagoon",
+    subTitle: "August 2023 - Present",
+    description: "Frontline staff. Bartending, receiving guests etc.",
+  },
+  {
+    id: 1,
+    title: "FlyOver Iceland",
+    subTitle: "2020 - 2023",
+    description: "Guest experience guide, ticketing and team lead.",
+  },
+  {
+    id: 2,
+    title: "Pósturinn",
+    subTitle: "2017 - 2019",
+    description: "Postman in Kópavogur.",
+  },
+  {
+    id: 3,
+    title: "Fosshótel Núpar",
+    subTitle: "2015 - 2016",
+    description:
+      "Receptionist. Receiving guests and bookings. Writing the restaurant menu, and other tasks.",
+  },
+  {
+    id: 4,
+    title: "Klatreskoven.dk (Adventure Park)",
+    subTitle: "2015",
+    description:
+      "Instructor. I assisted in building the Roskilde division from the beginning.",
+  },
+  {
+    id: 5,
+    title: "Spar shop in Udby",
+    subTitle: "2008 - 2011",
+    description: "Worked with sorting bottles and as a cashier.",
+  },
+  {
+    id: 6,
+    title: "Tuse Næs gymnastics hall (íþróttamiðstöð)",
+    subTitle: "2007 - 2009",
+    description: "Taught children gymnastics once a week.",
+  },
+];
+
+type HeaderProps = {
+  name: string;
+  aboutMe: string;
+};
+
+const Header = ({ name, aboutMe }: HeaderProps) => {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
+    <>
+      <div className="header">
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          <h1 className="name">{name}</h1>
+          <h2 className="about-me">{aboutMe}</h2>
         </div>
-      </div>
-
-      <div className={styles.center}>
         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
+          src={profileImage}
+          alt="A picture of me!"
+          className="image-container"
           priority
         />
       </div>
+    </>
+  );
+};
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+type ContentProps = {
+  data: typeof DATA;
+};
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+const Content = (props: ContentProps) => {
+  return (
+    <div className="previous-jobs">
+      {props.data.map((item) => (
+        <div className="individual-job" key={item.id}>
+          <h3 className="title">{item.title}</h3>
+          <p className="time-at-work">{item.subTitle}</p>
+          <p className="job-description">{item.description} </p>
+        </div>
+      ))}
+    </div>
+  );
+};
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+export default function Home() {
+  return (
+    <div>
+      <Header name={HEADERNAME} aboutMe={HEADERDESCRIPTION} />
+      <Content data={DATA} key={"c0"} />
+    </div>
   );
 }
